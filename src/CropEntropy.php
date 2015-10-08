@@ -5,9 +5,6 @@ use Imagine\Image\ImagineInterface;
 
 class CropEntropy
 {
-    const IMG = 'img/';
-    const TMP = 'tmp/';
-
     /**
      * The Imagine implementation used to process images.
      * @var ImagineInterface
@@ -36,7 +33,7 @@ class CropEntropy
      */
     public static function cropImageEntropy()
     {
-        $images = scandir(IMG);
+        $images = scandir('img/');
         static::CropCarre($images);
         static::CropHorizontale($images);
         static::CropVerticale($images);
@@ -54,7 +51,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(200, 200));
-                $imageCrop->save(TMP . $drivers .'/Entropy/square/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/Entropy/square/' . $image);
             }
         }
     }
@@ -71,7 +68,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/Entropy/horizontale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/Entropy/horizontale/' . $image);
             }
         }
     }
@@ -88,7 +85,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/Entropy/verticale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/Entropy/verticale/' . $image);
             }
         }
     }

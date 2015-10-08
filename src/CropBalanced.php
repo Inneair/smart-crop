@@ -5,9 +5,6 @@ use Imagine\Image\ImagineInterface;
 
 class CropBalanced
 {
-    const IMG = 'img/';
-    const TMP = 'tmp/';
-
     /**
      * The Imagine implementation used to process images.
      * @var ImagineInterface
@@ -36,7 +33,7 @@ class CropBalanced
      */
     public static function cropImageBalanced()
     {
-        $images = scandir(IMG);
+        $images = scandir('img/');
         static::CropCarre($images);
         static::CropHorizontale($images);
         static::CropVerticale($images);
@@ -54,7 +51,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(200, 200));
-                $imageCrop->save(TMP . $drivers .'/balanced/square/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/balanced/square/' . $image);
             }
         }
     }
@@ -71,7 +68,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/balanced/horizontale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/balanced/horizontale/' . $image);
             }
         }
     }
@@ -88,7 +85,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/balanced/verticale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/balanced/verticale/' . $image);
             }
         }
     }

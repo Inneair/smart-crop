@@ -6,9 +6,6 @@ use Imagine\Image\Point;
 
 class Crop
 {
-    const IMG = 'img/';
-    const TMP = 'tmp/';
-
     /**
      * The Imagine implementation used to process images.
      * @var ImagineInterface
@@ -37,7 +34,7 @@ class Crop
      */
     public static function cropImageBasic()
     {
-        $images = scandir(IMG);
+        $images = scandir('img/');
         static::CropCarre($images);
         static::CropHorizontale($images);
         static::CropVerticale($images);
@@ -61,7 +58,7 @@ class Crop
                 $imageCrop->resize($size->scale($ratio));
 
                 $imageCrop->crop(new Point(round(($size->getWidth() - 200) / 2), round(($size->getHeight() - 200) / 2)), new Box(200, 200));
-                $imageCrop->save(TMP . $drivers .'/basic/square/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/basic/square/' . $image);
             }
         }
     }
@@ -84,7 +81,7 @@ class Crop
                 $imageCrop->resize($size->scale($ratio));
 
                 $imageCrop->crop(new Point(round(($size->getWidth() - 600) / 2), round(($size->getHeight() - 200) / 2)), new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/basic/horizontale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/basic/horizontale/' . $image);
             }
         }
     }
@@ -107,7 +104,7 @@ class Crop
                 $imageCrop->resize($size->scale($ratio));
 
                 $imageCrop->crop(new Point(round(($size->getWidth() - 200) / 2), round(($size->getHeight() - 600) / 2)), new Box(600, 200));
-                $imageCrop->save(TMP . $drivers .'/basic/verticale/' . $image);
+                $imageCrop->save('tmp/' . $drivers .'/basic/verticale/' . $image);
             }
         }
     }
