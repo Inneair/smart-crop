@@ -5,6 +5,7 @@
     <title>Crop horizontal</title>
 </head>
 <body>
+<table>
 
 </body>
 </html>
