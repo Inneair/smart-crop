@@ -1,0 +1,29 @@
+{
+  "name" : "imagine/smart-crop",
+  "type" : "project",
+  "description" : "test for smart crop in imagine",
+  "keywords" : [
+    "imagine",
+    "smart crop"
+  ],
+  "license" : "proprietary",
+  "authors" : [{
+    "name" : "Guillaume Ogier"
+  }
+  ],
+  "repositories" : [
+    {
+      "type" : "git",
+      "url" : "https://github.com/inneair/imagine"
+    }
+  ],
+  "require" : {
+    "php" : "5.3 - 5.6",
+    "inneair/imagine": "dev-develop"
+  },
+  "require-dev" : {
+    "phpdocumentor/phpdocumentor" : "~2.0,!=2.8.2"
+  },
+  "minimum-stability" : "dev",
+  "prefer-stable" : true
+}
