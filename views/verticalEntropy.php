@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crop Square</title>
+    <title>Square entropy</title>
 </head>
 <body>
 <table>
@@ -22,9 +22,9 @@
                 <?php echo $height ?>;</br>
                 <img src="img/<?php echo $image ?>" border="0" style="max-width: 200px"/>
             </td>
-            <td><img src="tmp/Gd/balanced/square/<?php echo $image ?>" border="0"/></td>
-            <td><img src="tmp/Gmagick/balanced/square/<?php echo $image ?>" border="0"/></td>
-            <td><img src="tmp/Imagick/balanced/square/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Gd/Entropy/vertical/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Gmagick/Entropy/vertical/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Imagick/Entropy/vertical/<?php echo $image ?>" border="0"/></td>
         </tr>
         <?php
     }

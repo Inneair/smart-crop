@@ -22,9 +22,9 @@
             <?php echo $height ?>;</br>
             <img src="img/<?php echo $image ?>" border="0" style="max-width: 200px"/>
         </td>
-        <td><img src="tmp/Gd/carre/<?php echo $image ?>" border="0"/></td>
-        <td><img src="tmp/entropy2/carre/<?php echo $image ?>" border="0"/></td>
-        <td><img src="tmp/balance/carre/<?php echo $image ?>" border="0"/></td>
+        <td><img src="tmp/Gd/balanced/horizontal/<?php echo $image ?>" border="0"/></td>
+        <td><img src="tmp/Gmagick/balanced/horizontal/<?php echo $image ?>" border="0"/></td>
+        <td><img src="tmp/Imagick/balanced/horizontal/<?php echo $image ?>" border="0"/></td>
     </tr>
     <?php
     }

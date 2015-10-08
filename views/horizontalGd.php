@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crop Square</title>
+    <title>Crop horizontal Gd</title>
 </head>
 <body>
 <table>
@@ -13,18 +13,18 @@
         ?>
         <tr style="text-align:center">
             <td style="border:1px solid black">Original picture</td>
-            <td style="border:1px solid black">crop with Gd</td>
-            <td style="border:1px solid black">crop with Gmagick</td>
-            <td style="border:1px solid black">Crop with Imagick</td>
+            <td style="border:1px solid black">crop basic</td>
+            <td style="border:1px solid black">crop balanced</td>
+            <td style="border:1px solid black">Crop entropy</td>
         </tr>
         <tr style="text-align:center">
             <td> <?php echo $width ?> x
                 <?php echo $height ?>;</br>
                 <img src="img/<?php echo $image ?>" border="0" style="max-width: 200px"/>
             </td>
-            <td><img src="tmp/Gd/balanced/square/<?php echo $image ?>" border="0"/></td>
-            <td><img src="tmp/Gmagick/balanced/square/<?php echo $image ?>" border="0"/></td>
-            <td><img src="tmp/Imagick/balanced/square/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Gd/basic/horizontal/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Gd/balanced/horizontal/<?php echo $image ?>" border="0"/></td>
+            <td><img src="tmp/Gd/Entropy/horizontal/<?php echo $image ?>" border="0"/></td>
         </tr>
         <?php
     }

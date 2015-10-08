@@ -8,9 +8,14 @@
   ],
   "license" : "proprietary",
   "authors" : [{
-    "name" : "Guillaume Ogier"
+    "name" : "Guillaume Ogier",
+    "email": "guiogier@sfr.fr"
   }
   ],
+  "autoload":
+  {
+    "psr-4": {"smart-crop\\": "src"}
+  },
   "repositories" : [
     {
       "type" : "git",
