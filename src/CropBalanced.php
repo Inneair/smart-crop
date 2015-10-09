@@ -1,5 +1,7 @@
 <?php
 
+namespace src;
+
 use Imagine\Image\Box;
 use Imagine\Image\ImagineInterface;
 
