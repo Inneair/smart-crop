@@ -10,10 +10,10 @@ For example a image of the sky have low edginess and an image of an anthill has 
 
 ### How does it work?
 
-To find the most important point we have 4 steps : 
-1. we turn the image into black and white (for more efficiency).
-2. we apply the edge effect and the blur effect to highlight the outlines.
-3. we find the most energetic point with 25 slices (this number is arbitrary).
+To find the most important point we have 4 steps :  
+1. we turn the image into black and white (for more efficiency).  
+2. we apply the edge effect and the blur effect to highlight the outlines.  
+3. we find the most energetic point with 25 slices (this number is arbitrary).  
 4. then we return the coordinates of this point for the cropping operation.
 
 ### Advantages
