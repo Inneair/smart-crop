@@ -32,7 +32,7 @@
 </table>
 
 <button style="cursor:pointer; font-weight:700;" type="button">
-    <a href="/index.php">Back to menu</a>
+    <a href="../index.php">Back to menu</a>
 </button>
 
 </body>
