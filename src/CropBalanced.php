@@ -14,6 +14,9 @@ class CropBalanced
      */
     private static $imagineImpl = null;
 
+    private static $drivers = array('Gd', 'Imagick', 'Gmagick');
+
+
     /**
      * @param $driver
      * @return ImagineInterface
@@ -42,16 +45,17 @@ class CropBalanced
     /**
      * @param $images
      */
-    private function CropCarre($images)
+    private static function CropCarre($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropBalanced(new Box(200, 200));
-                $imageCrop->save('tmp/' . $driver .'/balanced/square/' . $image);
+                    $imageCrop->resizeAndCropBalanced(new Box(200, 200));
+                    $imageCrop->save('tmp/' . $driver .'/balanced/square/' . $image);
+                }
             }
         }
     }
@@ -59,16 +63,17 @@ class CropBalanced
     /**
      * @param $images
      */
-    private function CropHorizontale($images)
+    private static function CropHorizontale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save('tmp/' . $driver .'/balanced/horizontal/' . $image);
+                    $imageCrop->resizeAndCropBalanced(new Box(600, 200));
+                    $imageCrop->save('tmp/' . $driver .'/balanced/horizontal/' . $image);
+                }
             }
         }
     }
@@ -76,16 +81,17 @@ class CropBalanced
     /**
      * @param $images
      */
-    private function CropVerticale($images)
+    private static function CropVerticale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save('tmp/' . $driver .'/balanced/vertical/' . $image);
+                    $imageCrop->resizeAndCropBalanced(new Box(600, 200));
+                    $imageCrop->save('tmp/' . $driver .'/balanced/vertical/' . $image);
+                }
             }
         }
     }

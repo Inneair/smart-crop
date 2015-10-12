@@ -15,6 +15,8 @@ class Crop
      */
     private static $imagineImpl = null;
 
+    private static $drivers = array('Gd', 'Imagick', 'Gmagick');
+
     /**
      * @param $driver
      * @return ImagineInterface
@@ -36,30 +38,33 @@ class Crop
     {
         $images = scandir('img/');
         static::CropCarre($images);
-        static::CropHorizontale($images);
         static::CropVerticale($images);
+        static::CropHorizontale($images);
     }
 
     /**
      * @param $images
      */
-    private function CropCarre($images)
+    private static function CropCarre($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
-                $size = $imageCrop->getSize();
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
+                        $size = $imageCrop->getSize();
 
-                $ratios = array(200 / $size->getWidth(), 200 / $size->getHeight());
-                $ratio = max($ratios);
-                $imageCrop->resize($size->scale($ratio));
+                        $ratios = array(200 / $size->getWidth(), 200 / $size->getHeight());
+                        $ratio = max($ratios);
+                        $imageCrop->resize($size->scale($ratio));
 
-                $size = $imageCrop->getSize();
-                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
-                $imageCrop->crop($startingPoint, new Box(200, 200));
-                $imageCrop->save('tmp/' . $driver .'/basic/square/' . $image);
+                        $size = $imageCrop->getSize();
+                        $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                        $imageCrop->crop($startingPoint, new Box(200, 200));
+                        $imageCrop->save('tmp/' . $driver . '/basic/square/' . $image);
+                    }
+                }
             }
         }
     }
@@ -67,23 +72,26 @@ class Crop
     /**
      * @param $images
      */
-    private function CropHorizontale($images)
+    private static function CropHorizontale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
-                $size = $imageCrop->getSize();
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
+                        $size = $imageCrop->getSize();
 
-                $ratios = array(600 / $size->getWidth(), 200 / $size->getHeight());
-                $ratio = max($ratios);
-                $imageCrop->resize($size->scale($ratio));
+                        $ratios = array(600 / $size->getWidth(), 200 / $size->getHeight());
+                        $ratio = max($ratios);
+                        $imageCrop->resize($size->scale($ratio));
 
-                $size = $imageCrop->getSize();
-                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
-                $imageCrop->crop($startingPoint, new Box(600, 200));
-                $imageCrop->save('tmp/' . $driver .'/basic/horizontal/' . $image);
+                        $size = $imageCrop->getSize();
+                        $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                        $imageCrop->crop($startingPoint, new Box(600, 200));
+                        $imageCrop->save('tmp/' . $driver . '/basic/horizontal/' . $image);
+                    }
+                }
             }
         }
     }
@@ -91,23 +99,26 @@ class Crop
     /**
      * @param $images
      */
-    private function CropVerticale($images)
+    private static function CropVerticale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
-                $size = $imageCrop->getSize();
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
+                        $size = $imageCrop->getSize();
 
-                $ratios = array(200 / $size->getWidth(), 600 / $size->getHeight());
-                $ratio = max($ratios);
-                $imageCrop->resize($size->scale($ratio));
+                        $ratios = array(200 / $size->getWidth(), 600 / $size->getHeight());
+                        $ratio = max($ratios);
+                        $imageCrop->resize($size->scale($ratio));
 
-                $size = $imageCrop->getSize();
-                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
-                $imageCrop->crop($startingPoint, new Box(200, 600));
-                $imageCrop->save('tmp/' . $driver .'/basic/vertical/' . $image);
+                        $size = $imageCrop->getSize();
+                        $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                        $imageCrop->crop($startingPoint, new Box(200, 600));
+                        $imageCrop->save('tmp/' . $driver . '/basic/vertical/' . $image);
+                    }
+                }
             }
         }
     }

@@ -14,6 +14,8 @@ class CropEntropy
      */
     private static $imagineImpl = null;
 
+    private static $drivers = array('Gd', 'Imagick', 'Gmagick');
+
     /**
      * @param $driver
      * @return ImagineInterface
@@ -42,16 +44,19 @@ class CropEntropy
     /**
      * @param $images
      */
-    private function CropCarre($images)
+    private static function CropCarre($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropEntropy(new Box(200, 200));
-                $imageCrop->save('tmp/' . $driver .'/Entropy/square/' . $image);
+                        $imageCrop->resizeAndCropEntropy(new Box(200, 200));
+                        $imageCrop->save('tmp/' . $driver .'/Entropy/square/' . $image);
+                    }
+                }
             }
         }
     }
@@ -59,16 +64,19 @@ class CropEntropy
     /**
      * @param $images
      */
-    private function CropHorizontale($images)
+    private static function CropHorizontale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save('tmp/' . $driver .'/Entropy/horizontal/' . $image);
+                        $imageCrop->resizeAndCropEntropy(new Box(600, 200));
+                        $imageCrop->save('tmp/' . $driver . '/Entropy/horizontal/' . $image);
+                    }
+                }
             }
         }
     }
@@ -76,16 +84,19 @@ class CropEntropy
     /**
      * @param $images
      */
-    private function CropVerticale($images)
+    private static function CropVerticale($images)
     {
-        $drivers = array('Imagick', 'Gmagick', 'Gd');
-        foreach ($drivers as $driver) {
-            $imagine = static::getImagine($driver);
-            foreach ($images as $image) {
-                $imageCrop = $imagine->open($image);
+        foreach (static::$drivers as $driver) {
+            if (extension_loaded($driver)) {
+                $imagine = static::getImagine($driver);
+                foreach ($images as $image) {
+                    if (strstr($image, '.jpg')) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save('tmp/' . $driver .'/Entropy/vertical/' . $image);
+                        $imageCrop->resizeAndCropEntropy(new Box(600, 200));
+                        $imageCrop->save('tmp/' . $driver . '/Entropy/vertical/' . $image);
+                    }
+                }
             }
         }
     }
