@@ -4,6 +4,7 @@ namespace src;
 
 use Imagine\Image\Box;
 use Imagine\Image\ImagineInterface;
+use InvalidArgumentException;
 
 class CropBalanced
 {
@@ -19,11 +20,8 @@ class CropBalanced
      */
     public static function getImagine($driver)
     {
-        if (static::$imagineImpl === null) {
-            $className = 'Imagine\\' . $driver . '\Imagine';
-
-            static::$imagineImpl = new $className();
-        }
+        $className = 'Imagine\\' . $driver . '\Imagine';
+        static::$imagineImpl = new $className();
 
         return static::$imagineImpl;
     }
@@ -53,7 +51,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(200, 200));
-                $imageCrop->save('tmp/' . $drivers .'/balanced/square/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/balanced/square/' . $image);
             }
         }
     }
@@ -70,7 +68,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/balanced/horizontale/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/balanced/horizontal/' . $image);
             }
         }
     }
@@ -87,7 +85,7 @@ class CropBalanced
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/balanced/verticale/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/balanced/vertical/' . $image);
             }
         }
     }

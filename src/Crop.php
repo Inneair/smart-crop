@@ -5,6 +5,7 @@ namespace src;
 use Imagine\Image\Box;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\Point;
+use InvalidArgumentException;
 
 class Crop
 {
@@ -20,11 +21,8 @@ class Crop
      */
     public static function getImagine($driver)
     {
-        if (static::$imagineImpl === null) {
-            $className = 'Imagine\\' . $driver . '\Imagine';
-
-            static::$imagineImpl = new $className();
-        }
+        $className = 'Imagine\\' . $driver . '\Imagine';
+        static::$imagineImpl = new $className();
 
         return static::$imagineImpl;
     }
@@ -34,7 +32,7 @@ class Crop
      *
      * @throws InvalidArgumentException
      */
-    public static function cropImageBasic()
+    public static function cropImageCenter()
     {
         $images = scandir('img/');
         static::CropCarre($images);
@@ -54,13 +52,14 @@ class Crop
                 $imageCrop = $imagine->open($image);
                 $size = $imageCrop->getSize();
 
-                // Resize operation
                 $ratios = array(200 / $size->getWidth(), 200 / $size->getHeight());
                 $ratio = max($ratios);
                 $imageCrop->resize($size->scale($ratio));
 
-                $imageCrop->crop(new Point(round(($size->getWidth() - 200) / 2), round(($size->getHeight() - 200) / 2)), new Box(200, 200));
-                $imageCrop->save('tmp/' . $drivers .'/basic/square/' . $image);
+                $size = $imageCrop->getSize();
+                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                $imageCrop->crop($startingPoint, new Box(200, 200));
+                $imageCrop->save('tmp/' . $driver .'/basic/square/' . $image);
             }
         }
     }
@@ -77,13 +76,14 @@ class Crop
                 $imageCrop = $imagine->open($image);
                 $size = $imageCrop->getSize();
 
-                // Resize operation
                 $ratios = array(600 / $size->getWidth(), 200 / $size->getHeight());
                 $ratio = max($ratios);
                 $imageCrop->resize($size->scale($ratio));
 
-                $imageCrop->crop(new Point(round(($size->getWidth() - 600) / 2), round(($size->getHeight() - 200) / 2)), new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/basic/horizontale/' . $image);
+                $size = $imageCrop->getSize();
+                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                $imageCrop->crop($startingPoint, new Box(600, 200));
+                $imageCrop->save('tmp/' . $driver .'/basic/horizontal/' . $image);
             }
         }
     }
@@ -100,13 +100,14 @@ class Crop
                 $imageCrop = $imagine->open($image);
                 $size = $imageCrop->getSize();
 
-                // Resize operation
                 $ratios = array(200 / $size->getWidth(), 600 / $size->getHeight());
                 $ratio = max($ratios);
                 $imageCrop->resize($size->scale($ratio));
 
-                $imageCrop->crop(new Point(round(($size->getWidth() - 200) / 2), round(($size->getHeight() - 600) / 2)), new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/basic/verticale/' . $image);
+                $size = $imageCrop->getSize();
+                $startingPoint = new Point(round($size->getWidth() / 2), round($size->getHeight() / 2));
+                $imageCrop->crop($startingPoint, new Box(200, 600));
+                $imageCrop->save('tmp/' . $driver .'/basic/vertical/' . $image);
             }
         }
     }

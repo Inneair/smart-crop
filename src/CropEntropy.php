@@ -4,6 +4,7 @@ namespace src;
 
 use Imagine\Image\Box;
 use Imagine\Image\ImagineInterface;
+use InvalidArgumentException;
 
 class CropEntropy
 {
@@ -19,11 +20,8 @@ class CropEntropy
      */
     public static function getImagine($driver)
     {
-        if (static::$imagineImpl === null) {
-            $className = 'Imagine\\' . $driver . '\Imagine';
-
-            static::$imagineImpl = new $className();
-        }
+        $className = 'Imagine\\' . $driver . '\Imagine';
+        static::$imagineImpl = new $className();
 
         return static::$imagineImpl;
     }
@@ -53,7 +51,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(200, 200));
-                $imageCrop->save('tmp/' . $drivers .'/Entropy/square/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/Entropy/square/' . $image);
             }
         }
     }
@@ -70,7 +68,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/Entropy/horizontale/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/Entropy/horizontal/' . $image);
             }
         }
     }
@@ -87,7 +85,7 @@ class CropEntropy
                 $imageCrop = $imagine->open($image);
 
                 $imageCrop->resizeAndCropEntropy(new Box(600, 200));
-                $imageCrop->save('tmp/' . $drivers .'/Entropy/verticale/' . $image);
+                $imageCrop->save('tmp/' . $driver .'/Entropy/vertical/' . $image);
             }
         }
     }
