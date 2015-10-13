@@ -49,8 +49,9 @@ class CropEntropy
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/Entropy/square/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
 
                         $imageCrop->resizeAndCropEntropy(new Box(200, 200));
@@ -69,8 +70,9 @@ class CropEntropy
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/Entropy/horizontal/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
 
                         $imageCrop->resizeAndCropEntropy(new Box(600, 200));
@@ -89,8 +91,9 @@ class CropEntropy
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/Entropy/vertical/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
 
                         $imageCrop->resizeAndCropEntropy(new Box(600, 200));

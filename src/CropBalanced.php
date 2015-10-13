@@ -50,11 +50,14 @@ class CropBalanced
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/balanced/square/');
                 foreach ($images as $image) {
-                    $imageCrop = $imagine->open('img/' . $image);
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                    $imageCrop->resizeAndCropBalanced(new Box(200, 200));
-                    $imageCrop->save('tmp/' . $driver .'/balanced/square/' . $image);
+                        $imageCrop->resizeAndCropBalanced(new Box(200, 200));
+                        $imageCrop->save('tmp/' . $driver . '/balanced/square/' . $image);
+                    }
                 }
             }
         }
@@ -68,11 +71,14 @@ class CropBalanced
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/balanced/horizontal/');
                 foreach ($images as $image) {
-                    $imageCrop = $imagine->open('img/' . $image);
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                    $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                    $imageCrop->save('tmp/' . $driver .'/balanced/horizontal/' . $image);
+                        $imageCrop->resizeAndCropBalanced(new Box(600, 200));
+                        $imageCrop->save('tmp/' . $driver . '/balanced/horizontal/' . $image);
+                    }
                 }
             }
         }
@@ -86,11 +92,14 @@ class CropBalanced
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/balanced/vertical/');
                 foreach ($images as $image) {
-                    $imageCrop = $imagine->open('img/' . $image);
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
+                        $imageCrop = $imagine->open('img/' . $image);
 
-                    $imageCrop->resizeAndCropBalanced(new Box(600, 200));
-                    $imageCrop->save('tmp/' . $driver .'/balanced/vertical/' . $image);
+                        $imageCrop->resizeAndCropBalanced(new Box(600, 200));
+                        $imageCrop->save('tmp/' . $driver . '/balanced/vertical/' . $image);
+                    }
                 }
             }
         }

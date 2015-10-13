@@ -50,8 +50,9 @@ class Crop
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/basic/square/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
                         $size = $imageCrop->getSize();
 
@@ -77,8 +78,9 @@ class Crop
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/basic/horizontal/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
                         $size = $imageCrop->getSize();
 
@@ -104,8 +106,9 @@ class Crop
         foreach (static::$drivers as $driver) {
             if (extension_loaded($driver)) {
                 $imagine = static::getImagine($driver);
+                $isCropped = scandir('tmp/' . $driver .'/basic/vertical/');
                 foreach ($images as $image) {
-                    if (strstr($image, '.jpg')) {
+                    if (strstr($image, '.jpg') && in_array($image, $isCropped)) {
                         $imageCrop = $imagine->open('img/' . $image);
                         $size = $imageCrop->getSize();
 
